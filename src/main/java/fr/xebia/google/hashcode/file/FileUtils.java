@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -49,6 +50,26 @@ public class FileUtils {
         }
 
         return dataCenter;
+    }
+
+    public static void writeServersInFile(DataCenter dataCenter, String filePath) {
+
+        Path path = FileSystems.getDefault().getPath(filePath);
+        try {
+            Files.write(path, dataCenter.getServers().stream().map(Object::toString).collect(Collectors.toList()), StandardOpenOption.WRITE);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static List<String> readFileInString(String filePath, String fileName) {
+        Path path = FileSystems.getDefault().getPath(filePath, fileName);
+        try {
+            return Files.readAllLines(path);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     private static String[] readFirstLine(Path path) {

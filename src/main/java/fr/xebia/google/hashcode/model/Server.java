@@ -30,4 +30,12 @@ public class Server {
     public int getGroup() {
         return group;
     }
+
+    @Override
+    public String toString() {
+        return "Server{" +
+                "indice=" + indice +
+                '}';
+    }
+
 }
