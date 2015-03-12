@@ -14,4 +14,10 @@ public class DataCenter {
     public void addRow(Row row) {
         this.rows.add(row);
     }
+
+    public void setUnavailableAt(int rowIndex, int location) {
+        Row row = rows.get(rowIndex);
+        row.locations[location] = State.NOT_AVAILABLE;
+    }
+
 }
