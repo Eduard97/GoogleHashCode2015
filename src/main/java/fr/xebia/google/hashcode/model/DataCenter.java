@@ -18,6 +18,8 @@ public class DataCenter {
 
     private List<Server> servers = new ArrayList<>();
 
+    public Integer groupCount;
+
     public List<Row> getRows() {
         return rows;
     }
@@ -89,6 +91,11 @@ public class DataCenter {
         Collections.sort(unusedServers, (o1, o2) -> o1.getIndice().compareTo(o2.getIndice()));
 
         return unusedServers;
+    }
+
+    public List<Server> findServerByIndiceRow(int indiceRow) {
+        // TODO
+        return null;
     }
 
 }
