@@ -24,12 +24,17 @@ public class BasicProcess implements Processor {
         List<Server> sortedServers = sortServerBySize(dataCenter.getServers());
 
         // On dépile et on les fait rentrer dans row disponible
-        for (Server sortedServer : sortedServers) {
-//            findFirstLocationAvailable(sortedServer.getSize());
+        for (Server server : sortedServers) {
+            Indices indices = findFirstLocationAvailable(server.getSize());
 
+            dataCenter.allocateServer(server, indices.indiceRow, indices.indiceLocation);
         }
 
         // On associe les groupes au serveur
+    }
+
+    private Indices findFirstLocationAvailable(Integer size) {
+        return null;
     }
 
     List<Server> sortServerBySize(List<Server> servers) {
@@ -43,6 +48,11 @@ public class BasicProcess implements Processor {
         });
 
         return sortedServers;
+    }
+
+    class Indices {
+        public Integer indiceRow;
+        public Integer indiceLocation;
     }
 
 }

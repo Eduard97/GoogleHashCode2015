@@ -1,7 +1,12 @@
 package fr.xebia.google.hashcode.model;
 
+import com.google.common.base.Predicate;
+import com.google.common.collect.Iterables;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import static fr.xebia.google.hashcode.model.State.NOT_AVAILABLE;
 
 public class DataCenter {
 
@@ -31,7 +36,7 @@ public class DataCenter {
 
     public void setUnavailableAt(int rowIndex, int location) {
         Row row = rows.get(rowIndex);
-        row.locations[location] = State.NOT_AVAILABLE;
+        row.locations[location] = NOT_AVAILABLE;
     }
 
     public int getUnavailableCount() {
@@ -39,7 +44,7 @@ public class DataCenter {
 
         for (Row r : rows) {
             for (State s : r.locations) {
-                if (s == State.NOT_AVAILABLE) {
+                if (s == NOT_AVAILABLE) {
                     unavailable++;
                 }
             }
@@ -48,8 +53,27 @@ public class DataCenter {
         return unavailable;
     }
 
-
     public void allocateServer(Server server, Integer indiceRow, Integer indiceLocation) {
+        Row row = findRow(indiceRow);
 
+        for (int i = indiceLocation; i < indiceLocation + server.getSize(); i++) {
+            row.locations[i] = NOT_AVAILABLE;
+        }
     }
+
+    public State getLocation(int indiceRow, int indiceLocation) {
+        Row row = findRow(indiceRow);
+
+        return row.locations[indiceLocation];
+    }
+
+    public Row findRow(final int indiceRow) {
+        return Iterables.find(rows, new Predicate<Row>() {
+            @Override
+            public boolean apply(Row row) {
+                return row.getIndice() == indiceRow;
+            }
+        });
+    }
+
 }
