@@ -55,20 +55,23 @@ public class FileUtilsTest {
         server3.row = 1;
         server3.column = 5;
         server3.group = 1;
+        Server server4 = new Server(3, 9, 1);
 
-        dataCenter.addServer(server1);
         dataCenter.addServer(server2);
         dataCenter.addServer(server3);
+        dataCenter.addServer(server4);
+        dataCenter.addServer(server1);
 
         // When
         FileUtils.writeServersInFile(dataCenter, "src/test/resources/result.txt");
         List<String> result = FileUtils.readFileInString("src/test/resources/result.txt");
 
         // Then
-        assertThat(result).hasSize(3);
+        assertThat(result).hasSize(4);
         assertThat(result.get(0)).isEqualTo("3 3 0");
         assertThat(result.get(1)).isEqualTo("5 9 2");
         assertThat(result.get(2)).isEqualTo("1 5 1");
+        assertThat(result.get(3)).isEqualTo("x");
     }
 
 }

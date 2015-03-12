@@ -1,10 +1,14 @@
 package fr.xebia.google.hashcode.model;
 
 import com.google.common.base.Predicate;
+import com.google.common.collect.Collections2;
 import com.google.common.collect.Iterables;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static fr.xebia.google.hashcode.model.State.NOT_AVAILABLE;
 
@@ -74,6 +78,17 @@ public class DataCenter {
                 return row.getIndice() == indiceRow;
             }
         });
+    }
+
+    public List<Server> getUnusedServers() {
+        List<Server> unusedServers = servers
+                .stream()
+                .filter(server -> server.column == null)
+                .collect(Collectors.<Server>toList());
+
+        Collections.sort(unusedServers, (o1, o2) -> o1.getIndice().compareTo(o2.getIndice()));
+
+        return unusedServers;
     }
 
 }

@@ -33,6 +33,10 @@ public class Server {
 
     @Override
     public String toString() {
+        if (column == null) {
+            return "x";
+        }
+
         return row + " " + column + " " + group;
     }
 
