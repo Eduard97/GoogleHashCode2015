@@ -10,7 +10,7 @@ import java.util.List;
 
 public class BasicProcess implements Processor {
 
-    private DataCenter dataCenter;
+    public DataCenter dataCenter;
 
     public BasicProcess(DataCenter dataCenter) {
         this.dataCenter = dataCenter;
