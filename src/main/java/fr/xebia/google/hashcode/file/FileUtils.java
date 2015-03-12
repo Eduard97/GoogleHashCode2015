@@ -58,7 +58,7 @@ public class FileUtils {
 
         Path path = FileSystems.getDefault().getPath(filePath);
         try {
-            Files.write(path, servers.stream().map(Object::toString).collect(Collectors.toList()), StandardOpenOption.WRITE);
+            Files.write(path, servers.stream().map(Object::toString).collect(Collectors.toList()), StandardOpenOption.CREATE_NEW, StandardOpenOption.WRITE);
         } catch (IOException e) {
             e.printStackTrace();
         }
