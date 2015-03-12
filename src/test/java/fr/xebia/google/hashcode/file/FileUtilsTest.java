@@ -1,6 +1,7 @@
 package fr.xebia.google.hashcode.file;
 
 import fr.xebia.google.hashcode.model.DataCenter;
+import fr.xebia.google.hashcode.model.Server;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -35,4 +36,18 @@ public class FileUtilsTest {
         assertThat(dataCenter.getUnavailableCount()).isEqualTo(1);
     }
 
+    @Test
+    public void should_write_simple_data_center_in_file() throws Exception {
+        // Given
+        DataCenter dataCenter = new DataCenter();
+        dataCenter.addServer(new Server(0, 5, 1));
+        dataCenter.addServer(new Server(1, 5, 1));
+        dataCenter.addServer(new Server(2, 5, 1));
+
+        // When
+        FileUtils.writeServersInFile(dataCenter, "src/test/resources/result.txt");
+
+        // Then
+        FileUtils.readFileInString("src/test/resources/result.txt");
+    }
 }

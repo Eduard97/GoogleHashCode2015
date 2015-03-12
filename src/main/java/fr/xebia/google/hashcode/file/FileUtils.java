@@ -62,8 +62,8 @@ public class FileUtils {
         }
     }
 
-    public static List<String> readFileInString(String filePath, String fileName) {
-        Path path = FileSystems.getDefault().getPath(filePath, fileName);
+    public static List<String> readFileInString(String filePath) {
+        Path path = FileSystems.getDefault().getPath(filePath);
         try {
             return Files.readAllLines(path);
         } catch (IOException e) {
