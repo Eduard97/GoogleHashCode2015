@@ -3,14 +3,13 @@ package fr.xebia.google.hashcode.file;
 import fr.xebia.google.hashcode.model.DataCenter;
 import fr.xebia.google.hashcode.model.Row;
 import fr.xebia.google.hashcode.model.Server;
-import javafx.util.Pair;
 
-import javax.xml.crypto.Data;
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -54,13 +53,25 @@ public class FileUtils {
 
     public static void writeServersInFile(DataCenter dataCenter, String filePath) {
 
+        List<Server> servers = dataCenter.getServers();
+        servers.sort(INDEX_CONPARATOR);
+
         Path path = FileSystems.getDefault().getPath(filePath);
         try {
-            Files.write(path, dataCenter.getServers().stream().map(Object::toString).collect(Collectors.toList()), StandardOpenOption.CREATE, StandardOpenOption.WRITE);
+            Files.write(path, servers.stream().map(Object::toString).collect(Collectors.toList()), StandardOpenOption.WRITE);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+
+    public static Comparator INDEX_CONPARATOR = new Comparator<Server>() {
+
+        @Override
+        public int compare(Server s1, Server s2) {
+            return s1.getIndice().compareTo(s2.getIndice());
+        }
+    };
 
     public static List<String> readFileInString(String filePath) {
         Path path = FileSystems.getDefault().getPath(filePath);
