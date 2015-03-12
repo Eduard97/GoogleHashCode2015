@@ -26,11 +26,10 @@ public class FileUtilsTest {
     @Test
     public void should_read_unavailables() throws Exception {
         // Given
-        String fileName = "fileToRead.txt";
-        String filePath = "src/test/resources";
+        String filePath = "src/test/resources/fileToRead.txt";
 
         // When
-        DataCenter dataCenter = FileUtils.readFileInDataCenter(filePath, fileName);
+        DataCenter dataCenter = FileUtils.readFileInDataCenter(filePath);
 
         // Then
         assertThat(dataCenter.getUnavailableCount()).isEqualTo(1);
