@@ -48,4 +48,8 @@ public class DataCenter {
         return unavailable;
     }
 
+
+    public void allocateServer(Server server, Integer indiceRow, Integer indiceLocation) {
+
+    }
 }
