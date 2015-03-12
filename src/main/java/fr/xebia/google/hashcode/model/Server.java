@@ -4,16 +4,15 @@ public class Server {
     private final int indice;
     private final int capacity;
     private final int size;
-    private final int group;
 
+    public int group;
     public int row;
     public int column;
 
-    public Server(int indice, int capacity, int size, int group) {
+    public Server(int indice, int capacity, int size) {
         this.indice = indice;
         this.capacity = capacity;
         this.size = size;
-        this.group = group;
     }
 
     public int getIndice() {
