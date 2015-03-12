@@ -26,8 +26,11 @@ public class FileUtils {
         int rowNumber = parseInt(firstLine[0]);
         int rowSize = parseInt(firstLine[1]);
         int notAvailableNumber = parseInt(firstLine[2]);
+        int groupCount = parseInt(firstLine[3]);
 
         dataCenter = new DataCenter();
+        dataCenter.groupCount = groupCount;
+
         for (int i = 0; i < rowNumber; i++) {
             dataCenter.addRow(new Row(i, rowSize));
         }
