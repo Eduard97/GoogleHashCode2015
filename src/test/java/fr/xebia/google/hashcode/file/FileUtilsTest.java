@@ -3,6 +3,8 @@ package fr.xebia.google.hashcode.file;
 import fr.xebia.google.hashcode.model.DataCenter;
 import org.junit.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class FileUtilsTest {
 
     @Test
@@ -15,8 +17,8 @@ public class FileUtilsTest {
         DataCenter dataCenter = FileUtils.readFileInDataCenter(filePath, fileName);
 
         // Then
-        assertThat(dataCenter.()).isEqualTo(5);
-        assertThat(grid.getColumnSize()).isEqualTo(7);
+        assertThat(dataCenter.getRows().size()).isEqualTo(2);
+        assertThat(dataCenter.getRows().get(0).getSize()).isEqualTo(5);
 //
 //        assertThat(grid.getCell(0, 0).getColorTarget()).isEqualTo(BLANK);
 //        assertThat(grid.getCell(0, 1).getColorTarget()).isEqualTo(BLANK);
@@ -28,6 +30,8 @@ public class FileUtilsTest {
 //
 //        assertThat(grid.getCell(4, 6).getColorTarget()).isEqualTo(BLANK);
     }
+
+
 
 
 }
