@@ -24,7 +24,17 @@ public class FileUtilsTest {
         assertThat(dataCenter.getServers().size()).isEqualTo(5);
     }
 
+    @Test
+    public void should_read_unavailables() throws Exception {
+        // Given
+        String fileName = "fileToRead.txt";
+        String filePath = "src/test/resources";
 
+        // When
+        DataCenter dataCenter = FileUtils.readFileInDataCenter(filePath, fileName);
 
+        // Then
+        assertThat(dataCenter.getUnavailableCount()).isEqualTo(1);
+    }
 
 }

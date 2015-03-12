@@ -33,4 +33,19 @@ public class DataCenter {
         Row row = rows.get(rowIndex);
         row.locations[location] = State.NOT_AVAILABLE;
     }
+
+    public int getUnavailableCount() {
+        int unavailable = 0;
+
+        for (Row r : rows) {
+            for (State s : r.locations) {
+                if (s == State.NOT_AVAILABLE) {
+                    unavailable++;
+                }
+            }
+        }
+
+        return unavailable;
+    }
+
 }
