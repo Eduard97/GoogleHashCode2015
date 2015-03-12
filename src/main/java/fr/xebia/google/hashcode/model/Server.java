@@ -15,7 +15,7 @@ public class Server {
         this.size = size;
     }
 
-    public int getIndice() {
+    public Integer getIndice() {
         return indice;
     }
 
