@@ -25,10 +25,10 @@ public class BasicProcessTest {
         List<Server> servers = Lists.newArrayList(s1, s2, s3);
 
         // When
-        List<Server> sortedServer = basicProcess.sortServerBySize(servers);
+        basicProcess.sortServerBySize(servers);
 
         // Then
-        assertThat(sortedServer).containsExactly(s2, s3, s1);
+        assertThat(servers).containsExactly(s2, s3, s1);
     }
 
     @Test
@@ -48,7 +48,10 @@ public class BasicProcessTest {
         assertThat(indices.indiceLocation).isEqualTo(0);
 
         // When
-        dataCenter.allocateServer(new Server(0, 0, 3), 0, 0);
+        Server server = new Server(0, 0, 3);
+        dataCenter.allocateServer(server, 0, 0);
+        assertThat(server.row).isEqualTo(0);
+        assertThat(server.column).isEqualTo(0);
 
         indices = basicProcess.findFirstLocationAvailable(3);
 

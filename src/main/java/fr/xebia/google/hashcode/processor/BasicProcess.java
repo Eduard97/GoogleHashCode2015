@@ -4,7 +4,6 @@ import fr.xebia.google.hashcode.model.DataCenter;
 import fr.xebia.google.hashcode.model.Row;
 import fr.xebia.google.hashcode.model.Server;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -19,13 +18,15 @@ public class BasicProcess implements Processor {
     @Override
     public void process() {
         // Tri des serveurs par tailles
-        List<Server> sortedServers = sortServerBySize(dataCenter.getServers());
+        sortServerBySize(dataCenter.getServers());
 
         // On dépile et on les fait rentrer dans row disponible
-        for (Server server : sortedServers) {
+        for (Server server : dataCenter.getServers()) {
             Indices indices = findFirstLocationAvailable(server.getSize());
 
-            dataCenter.allocateServer(server, indices.indiceRow, indices.indiceLocation);
+            if (indices != null) {
+                dataCenter.allocateServer(server, indices.indiceRow, indices.indiceLocation);
+            }
         }
 
         // On associe les groupes au serveur
@@ -69,17 +70,13 @@ public class BasicProcess implements Processor {
         return null;
     }
 
-    List<Server> sortServerBySize(List<Server> servers) {
-        List<Server> sortedServers = new ArrayList<>(servers);
-
-        sortedServers.sort(new Comparator<Server>() {
+    void sortServerBySize(List<Server> servers) {
+        servers.sort(new Comparator<Server>() {
             @Override
             public int compare(Server s1, Server s2) {
                 return -s1.getSize().compareTo(s2.getSize());
             }
         });
-
-        return sortedServers;
     }
 
     class Indices {

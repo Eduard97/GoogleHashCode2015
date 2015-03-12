@@ -63,6 +63,9 @@ public class DataCenter {
     public void allocateServer(Server server, Integer indiceRow, Integer indiceLocation) {
         Row row = findRow(indiceRow);
 
+        server.row = indiceRow;
+        server.column = indiceLocation;
+
         for (int i = indiceLocation; i < indiceLocation + server.getSize(); i++) {
             row.locations[i] = NOT_AVAILABLE;
         }
@@ -96,6 +99,12 @@ public class DataCenter {
 
     public List<Server> findServerByIndiceRow(int indiceRow) {
         return FluentIterable.from(servers)
+                .filter(new Predicate<Server>() {
+                    @Override
+                    public boolean apply(Server server) {
+                        return server.row != null;
+                    }
+                })
                 .filter(new Predicate<Server>() {
                     @Override
                     public boolean apply(Server server) {
