@@ -33,6 +33,28 @@ public class BasicProcess implements Processor {
     }
 
     void associateGroup() {
+        Integer groupCount = dataCenter.groupCount;
+        Integer currentGroup = 0;
+
+        for (Row row : dataCenter.getRows()) {
+            List<Server> servers = dataCenter.findServerByIndiceRow(row.getIndice());
+            currentGroup = 0;
+
+            for (Server server : servers) {
+                server.group = currentGroup;
+                currentGroup = nextGroup(currentGroup, groupCount);
+            }
+        }
+    }
+
+    Integer nextGroup(Integer currentGroup, Integer groupCount) {
+        currentGroup++;
+
+        if (currentGroup >= groupCount) {
+            currentGroup = 0;
+        }
+
+        return currentGroup;
     }
 
     Indices findFirstLocationAvailable(Integer size) {

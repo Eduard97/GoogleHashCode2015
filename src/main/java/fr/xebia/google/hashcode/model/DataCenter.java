@@ -2,6 +2,7 @@ package fr.xebia.google.hashcode.model;
 
 import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
+import com.google.common.collect.FluentIterable;
 import com.google.common.collect.Iterables;
 
 import java.util.ArrayList;
@@ -94,8 +95,14 @@ public class DataCenter {
     }
 
     public List<Server> findServerByIndiceRow(int indiceRow) {
-        // TODO
-        return null;
+        return FluentIterable.from(servers)
+                .filter(new Predicate<Server>() {
+                    @Override
+                    public boolean apply(Server server) {
+                        return server.row == indiceRow;
+                    }
+                })
+                .toList();
     }
 
 }
