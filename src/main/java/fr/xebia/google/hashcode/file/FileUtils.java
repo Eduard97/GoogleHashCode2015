@@ -56,7 +56,7 @@ public class FileUtils {
 
         Path path = FileSystems.getDefault().getPath(filePath);
         try {
-            Files.write(path, dataCenter.getServers().stream().map(Object::toString).collect(Collectors.toList()), StandardOpenOption.WRITE);
+            Files.write(path, dataCenter.getServers().stream().map(Object::toString).collect(Collectors.toList()), StandardOpenOption.CREATE, StandardOpenOption.WRITE);
         } catch (IOException e) {
             e.printStackTrace();
         }

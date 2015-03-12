@@ -4,6 +4,8 @@ import fr.xebia.google.hashcode.model.DataCenter;
 import fr.xebia.google.hashcode.model.Server;
 import org.junit.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class FileUtilsTest {
@@ -46,8 +48,10 @@ public class FileUtilsTest {
 
         // When
         FileUtils.writeServersInFile(dataCenter, "src/test/resources/result.txt");
+        List<String> result = FileUtils.readFileInString("src/test/resources/result.txt");
 
         // Then
-        FileUtils.readFileInString("src/test/resources/result.txt");
+        assertThat(result).hasSize(3);
     }
+    
 }
