@@ -33,7 +33,7 @@ public class Server {
 
     @Override
     public String toString() {
-        return indice + " " + row + " " + column;
+        return row + " " + column + " " + group;
     }
 
 }
