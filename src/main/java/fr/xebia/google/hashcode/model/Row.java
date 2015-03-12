@@ -32,9 +32,9 @@ public class Row {
         int indiceLocation = 0;
 
         for (int i = 0; i < locations.length; i++) {
-            if (locations[0] == NOT_AVAILABLE) {
+            if (locations[i] == NOT_AVAILABLE) {
                 actualSize = 0;
-                indiceLocation = i;
+                indiceLocation = i+1;
             }
             else {
                 actualSize++;
