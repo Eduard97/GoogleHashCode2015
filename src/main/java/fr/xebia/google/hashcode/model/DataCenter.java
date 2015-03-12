@@ -5,13 +5,13 @@ import java.util.List;
 
 public class DataCenter {
 
-    private List<Row> rows;
+    private List<Row> rows = new ArrayList<>();
 
-    public DataCenter(int nbRow) {
-        rows = new ArrayList<>(nbRow);
+    public List<Row> getRows() {
+        return rows;
+    }
 
-        for (int i = 0; i < nbRow; i++) {
-            rows.add(new Row(i));
-        }
+    public void addRow(Row row) {
+        this.rows.add(row);
     }
 }

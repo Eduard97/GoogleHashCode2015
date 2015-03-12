@@ -2,8 +2,33 @@ package fr.xebia.google.hashcode.model;
 
 public class Server {
     private final int indice;
+    private final int capacity;
+    private final int size;
+    private final int group;
 
-    public Server(int indice) {
+    public int row;
+    public int column;
+
+    public Server(int indice, int capacity, int size, int group) {
         this.indice = indice;
+        this.capacity = capacity;
+        this.size = size;
+        this.group = group;
+    }
+
+    public int getIndice() {
+        return indice;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public int getGroup() {
+        return group;
     }
 }
