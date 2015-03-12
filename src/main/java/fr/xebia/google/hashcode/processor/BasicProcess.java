@@ -39,7 +39,6 @@ public class BasicProcess implements Processor {
 
         for (Row row : dataCenter.getRows()) {
             List<Server> servers = dataCenter.findServerByIndiceRow(row.getIndice());
-            currentGroup = 0;
 
             for (Server server : servers) {
                 server.group = currentGroup;
