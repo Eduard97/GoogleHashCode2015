@@ -19,16 +19,9 @@ public class FileUtilsTest {
         // Then
         assertThat(dataCenter.getRows().size()).isEqualTo(2);
         assertThat(dataCenter.getRows().get(0).getSize()).isEqualTo(5);
-//
-//        assertThat(grid.getCell(0, 0).getColorTarget()).isEqualTo(BLANK);
-//        assertThat(grid.getCell(0, 1).getColorTarget()).isEqualTo(BLANK);
-//        assertThat(grid.getCell(0, 2).getColorTarget()).isEqualTo(BLANK);
-//        assertThat(grid.getCell(0, 3).getColorTarget()).isEqualTo(BLANK);
-//        assertThat(grid.getCell(0, 4).getColorTarget()).isEqualTo(COLORED);
-//
-//        assertThat(grid.getCell(2, 2).getColorTarget()).isEqualTo(COLORED);
-//
-//        assertThat(grid.getCell(4, 6).getColorTarget()).isEqualTo(BLANK);
+
+//        assertThat(dataCenter.get().size()).isEqualTo(5);
+        assertThat(dataCenter.getServers().size()).isEqualTo(5);
     }
 
 

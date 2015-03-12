@@ -2,6 +2,7 @@ package fr.xebia.google.hashcode.file;
 
 import fr.xebia.google.hashcode.model.DataCenter;
 import fr.xebia.google.hashcode.model.Row;
+import fr.xebia.google.hashcode.model.Server;
 import javafx.util.Pair;
 
 import javax.xml.crypto.Data;
@@ -32,10 +33,20 @@ public class FileUtils {
         }
 
         List<String[]> notAvalableLines = readNotAvalableLines(path, notAvailableNumber);
+        for (String[] notAvalableLine : notAvalableLines) {
+            int rowIndex = parseInt(notAvalableLine[0]);
+            int column = parseInt(notAvalableLine[1]);
+            dataCenter.setUnavailableAt(rowIndex, column);
+        }
 
         List<String[]> serverLines = readServerLines(path, 1 + notAvailableNumber);
-
-
+        int i = 0;
+        for (String[] serverLine : serverLines) {
+            int size = parseInt(serverLine[0]);
+            int capacity = parseInt(serverLine[1]);
+            dataCenter.addServer(new Server(i, capacity, size));
+            i++;
+        }
 
         return dataCenter;
     }
