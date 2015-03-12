@@ -1,13 +1,13 @@
 package fr.xebia.google.hashcode.model;
 
 public class Server {
-    private final int indice;
-    private final int capacity;
-    private final int size;
+    private final Integer indice;
+    private final Integer capacity;
+    private final Integer size;
 
-    public int group;
-    public int row;
-    public int column;
+    public Integer group;
+    public Integer row;
+    public Integer column;
 
     public Server(int indice, int capacity, int size) {
         this.indice = indice;
@@ -23,7 +23,7 @@ public class Server {
         return capacity;
     }
 
-    public int getSize() {
+    public Integer getSize() {
         return size;
     }
 
