@@ -31,9 +31,13 @@ public class BasicProcess implements Processor {
         }
 
         // On associe les groupes au serveur
+        associateGroup();
     }
 
-    private Indices findFirstLocationAvailable(Integer size) {
+    void associateGroup() {
+    }
+
+    Indices findFirstLocationAvailable(Integer size) {
         return null;
     }
 
