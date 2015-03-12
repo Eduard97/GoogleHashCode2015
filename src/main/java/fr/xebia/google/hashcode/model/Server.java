@@ -19,7 +19,7 @@ public class Server {
         return indice;
     }
 
-    public int getCapacity() {
+    public Integer getCapacity() {
         return capacity;
     }
 

@@ -15,10 +15,15 @@ public class BasicProcess implements Processor {
         this.dataCenter = dataCenter;
     }
 
+    /**
+     * Basic process: 201
+     */
     @Override
     public void process() {
         // Tri des serveurs par tailles
-        sortServerBySize(dataCenter.getServers());
+//        sortServerBySize(dataCenter.getServers()); // 201
+//        sortServerByCapacity(dataCenter.getServers()); // 201
+        sortServerByRatio(dataCenter.getServers()); // 201
 
         // On dépile et on les fait rentrer dans row disponible
         for (Server server : dataCenter.getServers()) {
@@ -67,6 +72,27 @@ public class BasicProcess implements Processor {
         }
 
         return null;
+    }
+
+    void sortServerByCapacity(List<Server> servers) {
+        servers.sort(new Comparator<Server>() {
+            @Override
+            public int compare(Server s1, Server s2) {
+                return -s1.getCapacity().compareTo(s2.getCapacity());
+            }
+        });
+    }
+
+    void sortServerByRatio(List<Server> servers) {
+        servers.sort(new Comparator<Server>() {
+            @Override
+            public int compare(Server s1, Server s2) {
+                Float ratio1 = Float.valueOf(s1.getSize() / s1.getCapacity());
+                Float ratio2 = Float.valueOf(s2.getSize() / s2.getCapacity());
+
+                return ratio1.compareTo(ratio2);
+            }
+        });
     }
 
     void sortServerBySize(List<Server> servers) {
