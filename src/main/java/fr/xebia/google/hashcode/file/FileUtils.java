@@ -35,7 +35,7 @@ public class FileUtils {
             dataCenter.addRow(new Row(i, rowSize));
         }
 
-        List<String[]> notAvalableLines = readNotAvalableLines(path, notAvailableNumber);
+        List<String[]> notAvalableLines = readNotAvailableLines(path, notAvailableNumber);
         for (String[] notAvalableLine : notAvalableLines) {
             int rowIndex = parseInt(notAvalableLine[0]);
             int column = parseInt(notAvalableLine[1]);
@@ -97,7 +97,7 @@ public class FileUtils {
         }
     }
 
-    private static List<String[]> readNotAvalableLines(Path path, int n) {
+    private static List<String[]> readNotAvailableLines(Path path, int n) {
         try (Stream<String> fileLines = Files.lines(path)) {
             return fileLines.skip(1).limit(n).map(s -> s.split(" ")).collect(Collectors.toList());
         } catch (IOException e) {
