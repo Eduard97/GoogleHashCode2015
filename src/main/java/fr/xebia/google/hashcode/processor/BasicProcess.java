@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class BasicProcess {
+public class BasicProcess implements Processor {
 
     private DataCenter dataCenter;
 
@@ -18,9 +18,17 @@ public class BasicProcess {
         this.dataCenter = dataCenter;
     }
 
+    @Override
     public void process() {
         // Tri des serveurs par tailles
+        List<Server> sortedServers = sortServerBySize(dataCenter.getServers());
+
         // On dépile et on les fait rentrer dans row disponible
+        for (Server sortedServer : sortedServers) {
+//            findFirstLocationAvailable(sortedServer.getSize());
+
+        }
+
         // On associe les groupes au serveur
     }
 
