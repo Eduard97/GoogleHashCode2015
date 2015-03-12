@@ -33,9 +33,7 @@ public class Server {
 
     @Override
     public String toString() {
-        return "Server{" +
-                "indice=" + indice +
-                '}';
+        return indice + " " + row + " " + column;
     }
 
 }
