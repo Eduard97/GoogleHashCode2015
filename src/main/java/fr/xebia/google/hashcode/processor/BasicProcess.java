@@ -4,6 +4,7 @@ import fr.xebia.google.hashcode.model.DataCenter;
 import fr.xebia.google.hashcode.model.Row;
 import fr.xebia.google.hashcode.model.Server;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -22,8 +23,8 @@ public class BasicProcess implements Processor {
     public void process() {
         // Tri des serveurs par tailles
 //        sortServerBySize(dataCenter.getServers()); // 201
-//        sortServerByCapacity(dataCenter.getServers()); // 201
-        sortServerByRatio(dataCenter.getServers()); // 201
+        sortServerByCapacity(dataCenter.getServers()); // 201
+//        sortServerByRatio(dataCenter.getServers()); // 201
 
         // On dépile et on les fait rentrer dans row disponible
         for (Server server : dataCenter.getServers()) {
@@ -35,7 +36,7 @@ public class BasicProcess implements Processor {
         }
 
         // On associe les groupes au serveur
-        associateGroup();
+        associateGroupWithSort();
     }
 
     void associateGroup() {
@@ -43,12 +44,30 @@ public class BasicProcess implements Processor {
         Integer currentGroup = 0;
 
         for (Row row : dataCenter.getRows()) {
-            List<Server> servers = dataCenter.findServerByIndiceRow(row.getIndice());
+            List<Server> servers = new ArrayList<>(dataCenter.findServerByIndiceRow(row.getIndice()));
 
             for (Server server : servers) {
                 server.group = currentGroup;
                 currentGroup = nextGroup(currentGroup, groupCount);
             }
+        }
+    }
+
+    void associateGroupWithSort() {
+        Integer groupCount = dataCenter.groupCount;
+        Integer currentGroup = 0;
+
+        List<Server> servers = new ArrayList<>();
+
+        for (Row row : dataCenter.getRows()) {
+            servers.addAll(dataCenter.findServerByIndiceRow(row.getIndice()));
+        }
+
+        sortServerByCapacity(servers);
+
+        for (Server server : servers) {
+            server.group = currentGroup;
+            currentGroup = nextGroup(currentGroup, groupCount);
         }
     }
 
