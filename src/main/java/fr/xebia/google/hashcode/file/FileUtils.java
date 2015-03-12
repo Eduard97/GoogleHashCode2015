@@ -18,10 +18,10 @@ import static java.lang.Integer.parseInt;
 
 public class FileUtils {
 
-    public static DataCenter readFileInDataCenter(String filePath, String fileName) {
+    public static DataCenter readFileInDataCenter(String filePath) {
         DataCenter dataCenter;
 
-        Path path = FileSystems.getDefault().getPath(filePath, fileName);
+        Path path = FileSystems.getDefault().getPath(filePath);
         String[] firstLine = readFirstLine(path);
         int rowNumber = parseInt(firstLine[0]);
         int rowSize = parseInt(firstLine[1]);
