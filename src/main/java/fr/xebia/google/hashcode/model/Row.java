@@ -1,6 +1,7 @@
 package fr.xebia.google.hashcode.model;
 
 import static fr.xebia.google.hashcode.model.State.AVAILABLE;
+import static fr.xebia.google.hashcode.model.State.NOT_AVAILABLE;
 
 public class Row {
     private final int indice;
@@ -24,5 +25,26 @@ public class Row {
 
     public int getSize() {
         return size;
+    }
+
+    public Integer findLocationFor(Integer size) {
+        int actualSize = 0;
+        int indiceLocation = 0;
+
+        for (int i = 0; i < locations.length; i++) {
+            if (locations[0] == NOT_AVAILABLE) {
+                actualSize = 0;
+                indiceLocation = i;
+            }
+            else {
+                actualSize++;
+
+                if (actualSize == size) {
+                    return indiceLocation;
+                }
+            }
+        }
+
+        return null;
     }
 }

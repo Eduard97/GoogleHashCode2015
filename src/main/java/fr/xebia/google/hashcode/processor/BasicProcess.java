@@ -1,6 +1,7 @@
 package fr.xebia.google.hashcode.processor;
 
 import fr.xebia.google.hashcode.model.DataCenter;
+import fr.xebia.google.hashcode.model.Row;
 import fr.xebia.google.hashcode.model.Server;
 
 import java.util.ArrayList;
@@ -10,9 +11,6 @@ import java.util.List;
 public class BasicProcess implements Processor {
 
     private DataCenter dataCenter;
-
-    public BasicProcess() {
-    }
 
     public BasicProcess(DataCenter dataCenter) {
         this.dataCenter = dataCenter;
@@ -38,6 +36,14 @@ public class BasicProcess implements Processor {
     }
 
     Indices findFirstLocationAvailable(Integer size) {
+        for (Row row : dataCenter.getRows()) {
+            Integer indiceLocation = row.findLocationFor(size);
+
+            if (indiceLocation != null) {
+                return new Indices(row.getIndice(), indiceLocation);
+            }
+        }
+
         return null;
     }
 
@@ -57,6 +63,11 @@ public class BasicProcess implements Processor {
     class Indices {
         public Integer indiceRow;
         public Integer indiceLocation;
+
+        public Indices(Integer indiceRow, Integer indiceLocation) {
+            this.indiceRow = indiceRow;
+            this.indiceLocation = indiceLocation;
+        }
     }
 
 }
