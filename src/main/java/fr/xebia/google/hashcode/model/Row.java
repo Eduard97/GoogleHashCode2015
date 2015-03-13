@@ -4,7 +4,7 @@ import static fr.xebia.google.hashcode.model.State.AVAILABLE;
 import static fr.xebia.google.hashcode.model.State.NOT_AVAILABLE;
 
 public class Row {
-    private final int indice;
+    private final Integer indice;
     private final int size;
 
     public State[] locations;
@@ -19,7 +19,7 @@ public class Row {
         }
     }
 
-    public int getIndice() {
+    public Integer getIndice() {
         return indice;
     }
 

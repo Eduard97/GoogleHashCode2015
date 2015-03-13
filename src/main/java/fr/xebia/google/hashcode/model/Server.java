@@ -8,6 +8,7 @@ public class Server {
     public Integer group;
     public Integer row;
     public Integer column;
+    public boolean done = false;
 
     public Server(int indice, int capacity, int size) {
         this.indice = indice;
