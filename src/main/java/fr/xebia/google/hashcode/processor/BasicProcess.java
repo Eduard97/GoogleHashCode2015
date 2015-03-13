@@ -79,6 +79,11 @@ public class BasicProcess implements Processor {
         return result;
     }
 
+    @Override
+    public DataCenter getDataCenter() {
+        return this.dataCenter;
+    }
+
     void associateGroup() {
         Integer groupCount = dataCenter.groupCount;
         Integer currentGroup = 0;
