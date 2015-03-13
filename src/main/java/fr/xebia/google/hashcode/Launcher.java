@@ -4,6 +4,7 @@ import fr.xebia.google.hashcode.file.FileUtils;
 import fr.xebia.google.hashcode.model.DataCenter;
 import fr.xebia.google.hashcode.processor.BasicProcess;
 import fr.xebia.google.hashcode.processor.Processor;
+import fr.xebia.google.hashcode.processor.ScoreComputer;
 
 import java.sql.Timestamp;
 import java.util.Date;
@@ -26,6 +27,8 @@ public class Launcher {
         Processor processor = new BasicProcess(dataCenter);
         processor.process();
         System.out.println("data center processed");
+
+        System.out.println("The score for this processor is: " + ScoreComputer.compute(processor.getDataCenter()));
 
         // Write in result file
         Date date = new Date();
