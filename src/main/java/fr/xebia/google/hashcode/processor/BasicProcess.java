@@ -29,29 +29,11 @@ public class BasicProcess implements Processor {
         sortServerByCapacity(dataCenter.getServers()); // 201
 
         // On dépile et on les fait rentrer dans row disponible
-        int startSearch = 0;
-        boolean ascending = true;
-
         for (Server server : dataCenter.getServers()) {
-            Indices indices = findFirstLocationAvailable(server.getSize(), startSearch);
+            Indices indices = findFirstLocationAvailable(server.getSize(), 0);
 
             if (indices != null) {
                 dataCenter.allocateServer(server, indices.indiceRow, indices.indiceLocation);
-            }
-
-            if (ascending) {
-                startSearch++;
-                if (startSearch >= dataCenter.getRows().size()) {
-                    startSearch = dataCenter.getRows().size() - 1;
-                    ascending = false;
-                }
-            }
-            else {
-                startSearch--;
-                if (startSearch < 0) {
-                    startSearch = 1;
-                    ascending = true;
-                }
             }
         }
 

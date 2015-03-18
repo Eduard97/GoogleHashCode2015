@@ -41,13 +41,8 @@ public class ScoreComputer {
 
             dataCenter.getServers().stream()
                     .filter(s -> s.group != null)
-                    .forEach(new Consumer<Server>() {
-                        @Override
-                        public void accept(Server server) {
-                            if (server.getGroup() == finalI) {
-                                gridScore[finalI][server.row] += server.getCapacity();
-                            }                        }
-                    });
+                    .filter(s -> s.getGroup() == finalI)
+                    .forEach(server -> gridScore[finalI][server.row] += server.getCapacity());
         }
     }
 
